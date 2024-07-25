@@ -28,6 +28,8 @@
 		height: auto;
 	}
 	</style>
+	
+	
 	</head>
 	
 	<body>
@@ -35,23 +37,22 @@
 		
 		<div class="page">
 
-			<div class="artikujt">
-				<div class="artikulli">
-					<img src="tave.jpg">
-					<p>Tave me Patligjona</p>
-					<p>5.00 euro</p>
-				</div>
-				<div class="artikulli">
-					<img src="tave.jpg">
-					<p>Tave me Patligjona</p>
-					<p>5.00 euro</p>
-				</div>
-				<div class="artikulli">
-					<img src="tave.jpg">
-					<p>Tave me Patligjona</p>
-					<p>5.00 euro</p>
-				</div> 
+			<div class="artikujt" id="artikujt">
+				
 			</div>
 		</div>
+		
+		<script>
+			fetch('http://localhost:8000').then(response => {
+				return response.json();
+			}).then(data => {
+				console.log(data);
+				const artikujt = document.getElementById("artikujt");
+				for (let j = 0; j < data.length; j++) {
+					artikujt.innerHTML = artikujt.innerHTML + `<div class="artikulli"><img src="${data[j][3]}"><p>${data[j][1]}</p><p>${data[j][2]} euro</p></div>`
+				}
+			   
+			})
+		</script>
 	</body>
 </html>
